@@ -61,16 +61,23 @@ public class Application {
 			dataBook.clear();
 		}
 		
+		
+		/*
 		for(Livro l : biblioteca) {
 			System.out.println(l);
 			System.out.println("-----------------------------------------------------");
 		}
 		
-		/*
-		distintos(biblioteca);
 		
 		
-		distintosBiblioteca(biblioteca);
+		for(Livro l : biblioteca){
+			System.out.println("Nome do livro: "+l.getNomeLivro()+"\n Quantidade de palavras: "+l.getQtePalavras()+" | Quantidade de palavras distintas: "+distintos(l));
+			System.out.println("-----------------------------------------------");
+		}
+		
+		
+		
+		System.out.println("Total de palavras distintas da biblioteca: "+distintosBiblioteca(biblioteca));
 		
 		frequencia(biblioteca, "anyone");
 		*/
@@ -89,7 +96,7 @@ public class Application {
 			if(sc.hasNext() == false) {
 				break;
 			}
-			String word = sc.next();
+			sc.next();
 			count++;
 		}
 
@@ -117,22 +124,20 @@ public class Application {
 		return conteudo;
 	}
 	
-	public static void distintos(List<Livro> biblioteca) {
-		for(Livro l : biblioteca) {
+	public static int distintos(Livro l) {
 			Set<String> distintos = new HashSet<String>(l.getConteudo());
-			System.out.println("Nome do livro: "+l.getNomeLivro()+"\n Quantidade de palavras: "+l.getQtePalavras()+" | Quantidade de palavras distintas: "+distintos.size());
-			System.out.println("-----------------------------------------------");
-		}
+			return distintos.size();
 	}
 	
-	public static void distintosBiblioteca(List<Livro> biblioteca) {
+	public static int distintosBiblioteca(List<Livro> biblioteca) {
 		List<String> conteudo = new ArrayList<String>();
 		
 		for(Livro l : biblioteca) {
 			conteudo.addAll(l.getConteudo());
 		}
 		Set<String> distintos = new HashSet<String>(conteudo);
-		System.out.println("Total de palavras distintas da biblioteca: "+distintos.size());
+		
+		return distintos.size();
 	}
 	
 	public static void frequencia(List<Livro> biblioteca, String palavra) {
