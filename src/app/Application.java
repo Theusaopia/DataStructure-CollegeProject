@@ -19,6 +19,7 @@ public class Application {
 	public static void main(String[] args) throws IOException {
 		Scanner sc = new Scanner(System.in);
 		Locale.setDefault(Locale.US);
+		StringBuilder sb = new StringBuilder();
 	
 		//creation of arrays - one for the books, another to store the inital data of each book
 		List<Livro> biblioteca = new ArrayList<Livro>();
@@ -30,14 +31,13 @@ public class Application {
 		
 		for (File file : filesList) {
 			sc = new Scanner(file);
-			String p = "";
 			
 			//attributing the first line of each file into a string
 			String f = sc.nextLine();
 			for (int i = 0; i < f.length(); i++) {
 				//verifies if the character is a letter, digit or white space
 				while(Character.isLetter(f.charAt(i)) || Character.isWhitespace(f.charAt(i)) || Character.isDigit(f.charAt(i))) {
-					 p += f.charAt(i); //if it is, creates a string 
+					 sb.append(f.charAt(i)); //if it is, creates a string 
 					 i++;
 					 
 					 //break the code to avoid exceptions
@@ -45,8 +45,8 @@ public class Application {
 						 break;
 					 } 
 				}
-				dataBook.add(p); //add the word made into a list of data
-				p=""; //restart the string
+				dataBook.add(sb.toString()); //add the word made into a list of data
+				sb.delete(0, sb.length()); //restart the string
 			}
 			
 			//creates 3 variables, the first ones to add in the book object
@@ -61,19 +61,20 @@ public class Application {
 			dataBook.clear();
 		}
 		
-		/*for(Livro l : biblioteca) {
+		for(Livro l : biblioteca) {
 			System.out.println(l);
 			System.out.println("-----------------------------------------------------");
 		}
 		
-		
+		/*
 		distintos(biblioteca);
+		
 		
 		distintosBiblioteca(biblioteca);
 		
-		
 		frequencia(biblioteca, "anyone");
 		*/
+		
 		sc.close();
 	}
 	
