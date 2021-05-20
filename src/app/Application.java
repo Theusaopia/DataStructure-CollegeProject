@@ -101,6 +101,8 @@ public class Application {
 		for(Livro l : biblioteca) {
 			System.out.print("Palavra mais frequente no livro "+l.getNomeLivro()+" :");
 			maisFrequente(l);
+			System.out.print(" menos frequente: ");
+			menosFrequente(l);
 		}
 		
 		
@@ -245,7 +247,47 @@ public class Application {
 			
 			
 		}
-		System.out.print(contadorInvertido.lastEntry()+"\n");
+		System.out.print(contadorInvertido.lastEntry());
+		
+	}
+	
+	public static void menosFrequente(Livro livro) {
+		Map<String, Integer> distintos = new HashMap<String, Integer>();
+		
+		
+			for(String palavra : livro.getConteudo()) {
+				Integer count = distintos.get(palavra);
+				
+				if(count == null) {
+					distintos.put(palavra, 1);
+				}else {
+					distintos.put(palavra, count + 1);
+				}
+			}	
+		
+		
+		NavigableMap<Integer, Set<String>> contadorInvertido = new TreeMap<Integer, Set<String>>();
+
+		
+		Set<String> distintosII;
+		
+		for (Entry<String, Integer> entry : distintos.entrySet()) {
+			if(!contadorInvertido.containsKey(entry.getValue())) {
+				contadorInvertido.put(entry.getValue(), null);
+			}
+			
+			if(contadorInvertido.get(entry.getValue()) == null) {
+				distintosII = new HashSet<String>();
+				distintosII.add(entry.getKey());
+				contadorInvertido.put(entry.getValue(), distintosII);
+			}else {
+				contadorInvertido.get(entry.getValue()).add(entry.getKey());
+			}
+			
+			
+			
+		}
+		System.out.print(contadorInvertido.firstEntry().getValue().stream().findFirst()+"\n");
 		
 	}
 }
