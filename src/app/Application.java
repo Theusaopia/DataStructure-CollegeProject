@@ -87,13 +87,15 @@ public class Application {
 		}
 		
 		;
-		*/
 		
-		String palavra = "anyone";
+		
+		
 			for(Livro l : biblioteca){
 			System.out.println("A palavra "+palavra+" apareceu "+frequencia(l, "anyone")+" vezes no livro "+l.getNomeLivro());		
 		}
-		
+		*/
+		String palavra = "anyone";
+		System.out.println("A palavra "+palavra+" apareceu "+frequenciaBiblioteca(biblioteca, palavra)+" vezes em toda a biblioteca");
 	
 		
 		sc.close();
@@ -171,6 +173,29 @@ public class Application {
 			freq = frequencia.get(palavra);
 		
 		return freq;
+		
+	} 
+	
+	public static Integer frequenciaBiblioteca(List<Livro> biblioteca, String palavra) {
+		Integer countBiblio = 0;
+		
+			Map<String, Integer> frequencia = new HashMap<String, Integer>();
+			
+			for(Livro l : biblioteca) {
+				for(String s : l.getConteudo()) {
+					Integer count = frequencia.get(s);
+					
+					if(count == null) {
+						frequencia.put(s, 1);
+					}else {
+						frequencia.put(s, count + 1);
+					}
+				}
+				countBiblio += frequencia.get(palavra);
+			}
+			
+		
+		return countBiblio;
 		
 	} 
 	
