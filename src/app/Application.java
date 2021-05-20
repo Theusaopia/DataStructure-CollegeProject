@@ -9,9 +9,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 import entities.Livro;
 
@@ -89,14 +91,20 @@ public class Application {
 		;
 		
 		
-		
+		String palavra = "anyone";
 			for(Livro l : biblioteca){
-			System.out.println("A palavra "+palavra+" apareceu "+frequencia(l, "anyone")+" vezes no livro "+l.getNomeLivro());		
+			System.out.println("A palavra "+palavra+" apareceu "+frequencia(l, "anyone")+" vezes no livro "+l.getNomeLivro());	
+			System.out.println("A palavra "+palavra+" apareceu "+frequenciaBiblioteca(biblioteca, palavra)+" vezes em toda a biblioteca");	
 		}
 		*/
-		String palavra = "anyone";
-		System.out.println("A palavra "+palavra+" apareceu "+frequenciaBiblioteca(biblioteca, palavra)+" vezes em toda a biblioteca");
-	
+		
+		for(Livro l : biblioteca) {
+			System.out.print("Palavra mais frequente no livro "+l.getNomeLivro()+" :");
+			maisFrequente(l);
+		}
+		
+		
+		
 		
 		sc.close();
 	}
@@ -199,15 +207,45 @@ public class Application {
 		
 	} 
 	
-	public static void testeOrdem(List<Livro> biblioteca) {
-		Set<Livro> set = new TreeSet<>(biblioteca);
-		
-		for(Livro l : set) {
-			System.out.println(l);
-		}
-	}
+
 	
-	public static void maisFrequente(List<Livro> biblioteca) {
+	public static void maisFrequente(Livro livro) {
+		Map<String, Integer> distintos = new HashMap<String, Integer>();
+		
+		
+			for(String palavra : livro.getConteudo()) {
+				Integer count = distintos.get(palavra);
+				
+				if(count == null) {
+					distintos.put(palavra, 1);
+				}else {
+					distintos.put(palavra, count + 1);
+				}
+			}	
+		
+		
+		NavigableMap<Integer, Set<String>> contadorInvertido = new TreeMap<Integer, Set<String>>();
+
+		
+		Set<String> distintosII;
+		
+		for (Entry<String, Integer> entry : distintos.entrySet()) {
+			if(!contadorInvertido.containsKey(entry.getValue())) {
+				contadorInvertido.put(entry.getValue(), null);
+			}
+			
+			if(contadorInvertido.get(entry.getValue()) == null) {
+				distintosII = new HashSet<String>();
+				distintosII.add(entry.getKey());
+				contadorInvertido.put(entry.getValue(), distintosII);
+			}else {
+				contadorInvertido.get(entry.getValue()).add(entry.getKey());
+			}
+			
+			
+			
+		}
+		System.out.print(contadorInvertido.lastEntry()+"\n");
 		
 	}
 }
