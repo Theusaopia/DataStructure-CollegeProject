@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
@@ -99,10 +100,10 @@ public class Application {
 		*/
 		
 		for(Livro l : biblioteca) {
-			System.out.print("Palavra mais frequente no livro "+l.getNomeLivro()+" :");
-			maisFrequente(l);
-			System.out.print(" menos frequente: ");
-			menosFrequente(l);
+			System.out.println("Livro: "+l.getNomeLivro());
+			System.out.print("Palavra mais frequente no livro "+l.getNomeLivro()+" :"+maisFrequente(l));
+			System.out.print(" menos frequente: "+menosFrequente(l)+"\n");
+			System.out.println("---------------------------------------");
 		}
 		
 		
@@ -211,7 +212,7 @@ public class Application {
 	
 
 	
-	public static void maisFrequente(Livro livro) {
+	public static Set<String> maisFrequente(Livro livro) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 		
 		
@@ -247,11 +248,11 @@ public class Application {
 			
 			
 		}
-		System.out.print(contadorInvertido.lastEntry());
+		return contadorInvertido.lastEntry().getValue();
 		
 	}
 	
-	public static void menosFrequente(Livro livro) {
+	public static Optional menosFrequente(Livro livro) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 		
 		
@@ -287,7 +288,7 @@ public class Application {
 			
 			
 		}
-		System.out.print(contadorInvertido.firstEntry().getValue().stream().findFirst()+"\n");
+		return contadorInvertido.firstEntry().getValue().stream().findFirst();
 		
 	}
 }
