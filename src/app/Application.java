@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 import entities.Livro;
 
@@ -79,8 +80,21 @@ public class Application {
 		
 		System.out.println("Total de palavras distintas da biblioteca: "+distintosBiblioteca(biblioteca));
 		
-		frequencia(biblioteca, "anyone");
+		
+		String palavra = "anyone"
+		for(Livro l : biblioteca){
+		System.out.println("A palavra "+palavra+" apareceu "+frequencia(biblioteca, "anyone")+" vezes no livro "+l.getNomeLivro());
+		}
+		
+		;
 		*/
+		
+		String palavra = "anyone";
+			for(Livro l : biblioteca){
+			System.out.println("A palavra "+palavra+" apareceu "+frequencia(l, "anyone")+" vezes no livro "+l.getNomeLivro());		
+		}
+		
+	
 		
 		sc.close();
 	}
@@ -140,9 +154,9 @@ public class Application {
 		return distintos.size();
 	}
 	
-	public static void frequencia(List<Livro> biblioteca, String palavra) {
-		Integer countBiblio = 0;
-		for(Livro l : biblioteca) {
+	public static Integer frequencia(Livro l, String palavra) {
+		Integer freq = 0;
+		
 			Map<String, Integer> frequencia = new HashMap<String, Integer>();
 			for(String s : l.getConteudo()) {
 				Integer count = frequencia.get(s);
@@ -153,12 +167,22 @@ public class Application {
 					frequencia.put(s, count + 1);
 				}
 			}
-			countBiblio+=frequencia.get(palavra);
 			
-			System.out.println("A palavra "+palavra+" apareceu "+frequencia.get(palavra)+" vezes no livro "+l.getNomeLivro());
-			System.out.println("-------------------------------------");
-		}
+			freq = frequencia.get(palavra);
 		
-		System.out.println("A palavra "+palavra+" apareceu "+countBiblio+" vezes na Biblioteca");
+		return freq;
+		
+	} 
+	
+	public static void testeOrdem(List<Livro> biblioteca) {
+		Set<Livro> set = new TreeSet<>(biblioteca);
+		
+		for(Livro l : set) {
+			System.out.println(l);
+		}
+	}
+	
+	public static void maisFrequente(List<Livro> biblioteca) {
+		
 	}
 }
