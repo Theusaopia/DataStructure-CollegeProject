@@ -68,58 +68,50 @@ public class Application {
 			dataBook.clear();
 		}
 
-		/*
-		 * for(Livro l : biblioteca) { System.out.println(l);
-		 * System.out.println("-----------------------------------------------------");
-		 * }
-		 * 
-		 * 
-		 * 
-		 * for(Livro l : biblioteca){
-		 * System.out.println("Nome do livro: "+l.getNomeLivro()
-		 * +"\n Quantidade de palavras: "+l.getQtePalavras()
-		 * +" | Quantidade de palavras distintas: "+distintos(l));
-		 * System.out.println("-----------------------------------------------"); }
-		 * 
-		 * 
-		 * 
-		 * System.out.println("Total de palavras distintas da biblioteca: "
-		 * +distintosBiblioteca(biblioteca));
-		 * 
-		 * 
-		 * String palavra = "anyone" for(Livro l : biblioteca){
-		 * System.out.println("A palavra "+palavra+" apareceu "+frequencia(biblioteca,
-		 * "anyone")+" vezes no livro "+l.getNomeLivro()); }
-		 * 
-		 * ; String palavra = "anyone"; for(Livro l : biblioteca){
-		 * System.out.println("A palavra "+palavra+" apareceu "+frequencia(l,
-		 * "anyone")+" vezes no livro "+l.getNomeLivro());
-		 * System.out.println("A palavra "+palavra+" apareceu "+frequenciaBiblioteca(
-		 * biblioteca, palavra)+" vezes em toda a biblioteca"); }
-		 * 
-		 * for (Livro l : biblioteca) { System.out.println("Livro: " +
-		 * l.getNomeLivro()); System.out.print("Palavra mais frequente no livro " +
-		 * l.getNomeLivro() + " :" + maisFrequente(l));
-		 * System.out.print(" menos frequente: " + menosFrequente(l) + "\n");
-		 * System.out.println("---------------------------------------"); }
-		 * 
-		 * for(Livro l : biblioteca) {
-		 * System.out.println("Nome do livro: "+l.getNomeLivro());
-		 * CincoMenosFrequentes(l, 5); System.out.println(); }
-		 *
-		 * for(Livro l : biblioteca) {
-		 * System.out.println("Nome do livro: "+l.getNomeLivro());
-		 * CincoMaisFrequentes(l, 5); System.out.println(); }
-		 * 
-		 * acimaDeMil(biblioteca);
-		 */
-		
-		for(Livro l : biblioteca) { System.out.println(l);
-		 System.out.println("-----------------------------------------------------");
-		 }	
-
-		
-
+		//test to print the object toString
+		for(Livro l : biblioteca) { 
+		  System.out.println(l);
+		  System.out.println("-----------------------------------------------------"); 
+		 }
+		  
+		  
+		//test for the distinct words  
+		for(Livro l : biblioteca){
+		  System.out.println("Nome do livro: "+l.getNomeLivro()+"\n Quantidade de palavras: "+l.getQtePalavras()+" | Quantidade de palavras distintas: "+distintos(l));
+		  System.out.println("-----------------------------------------------"); 
+		  }
+		  
+		  
+		 //test for the distinct of all the library 
+		 System.out.println("Total de palavras distintas da biblioteca: "+distintosBiblioteca(biblioteca));
+		  
+		 //test for the frequency methods 
+		 String palavra = "anyone"; 
+		 
+		 for(Livro l : biblioteca){ //frequency of one word 
+		  System.out.println("A palavra "+palavra+" apareceu "+frequencia(l,palavra)+" vezes no livro "+l.getNomeLivro());
+		  System.out.println("A palavra "+palavra+" apareceu "+frequenciaBiblioteca(biblioteca, palavra)+" vezes em toda a biblioteca"); }
+		  
+		 
+		 for (Livro l : biblioteca) { //more or less frequent 
+		  System.out.println("Livro: " +l.getNomeLivro()); System.out.print("Palavra mais frequente no livro " +l.getNomeLivro() + " :" + maisFrequente(l));
+		  System.out.print(" menos frequente: " + menosFrequente(l) + "\n");
+		  System.out.println("---------------------------------------");
+		  }
+		  
+		  for(Livro l : biblioteca) { //five less frequents
+		  System.out.println("Nome do livro: "+l.getNomeLivro());
+		  CincoMenosFrequentes(l, 5); System.out.println(); 
+		  }
+		 
+		  for(Livro l : biblioteca) { //five more frequents
+		  System.out.println("Nome do livro: "+l.getNomeLivro());
+		  CincoMaisFrequentes(l, 5); System.out.println(); 
+		  }
+		  
+		  //words that appear more than a thousand times
+		  acimaDeMil(biblioteca);
+		 
 		sc.close();
 	}
 
@@ -162,11 +154,13 @@ public class Application {
 		return conteudo;
 	}
 
+	// method that counts the distinct words in each text file
 	public static int distintos(Livro l) {
 		Set<String> distintos = new HashSet<String>(l.getConteudo());
 		return distintos.size();
 	}
 
+	// also counts the distinct words, but in all the library
 	public static int distintosBiblioteca(List<Livro> biblioteca) {
 		List<String> conteudo = new ArrayList<String>();
 
@@ -178,6 +172,7 @@ public class Application {
 		return distintos.size();
 	}
 
+	// return the frequency of a word inside each book
 	public static Integer frequencia(Livro l, String palavra) {
 		Integer freq = 0;
 
@@ -198,6 +193,7 @@ public class Application {
 
 	}
 
+	// also return the frequency of a word, but in all the library
 	public static Integer frequenciaBiblioteca(List<Livro> biblioteca, String palavra) {
 		Integer countBiblio = 0;
 
@@ -220,6 +216,7 @@ public class Application {
 
 	}
 
+	// return the word that most appear in the book
 	public static Set<String> maisFrequente(Livro livro) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 
@@ -255,6 +252,7 @@ public class Application {
 
 	}
 
+	// return the less frequent word in each book
 	public static Optional menosFrequente(Livro livro) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 
@@ -290,6 +288,7 @@ public class Application {
 
 	}
 
+	// return the five(or other number) most frequent words in the book
 	public static void CincoMenosFrequentes(Livro l, Integer num) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 
@@ -334,6 +333,7 @@ public class Application {
 		}
 	}
 
+	// return the five(or other number) most frequent words in the book
 	public static void CincoMaisFrequentes(Livro l, Integer num) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 
@@ -378,6 +378,7 @@ public class Application {
 		}
 	}
 
+	// only return words that appeared more than a thousand times in the library
 	public static void acimaDeMil(List<Livro> biblioteca) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 		for (Livro l : biblioteca) {
