@@ -97,26 +97,28 @@ public class Application {
 		 * System.out.println("A palavra "+palavra+" apareceu "+frequenciaBiblioteca(
 		 * biblioteca, palavra)+" vezes em toda a biblioteca"); }
 		 * 
-		 * for (Livro l : biblioteca) {
-			System.out.println("Livro: " + l.getNomeLivro());
-			System.out.print("Palavra mais frequente no livro " + l.getNomeLivro() + " :" + maisFrequente(l));
-			System.out.print(" menos frequente: " + menosFrequente(l) + "\n");
-			System.out.println("---------------------------------------");
-			}
+		 * for (Livro l : biblioteca) { System.out.println("Livro: " +
+		 * l.getNomeLivro()); System.out.print("Palavra mais frequente no livro " +
+		 * l.getNomeLivro() + " :" + maisFrequente(l));
+		 * System.out.print(" menos frequente: " + menosFrequente(l) + "\n");
+		 * System.out.println("---------------------------------------"); }
 		 * 
 		 * for(Livro l : biblioteca) {
-			System.out.println("Nome do livro: "+l.getNomeLivro());
-			MenosFrequentes(l, 5);
-			System.out.println();
-		}
+		 * System.out.println("Nome do livro: "+l.getNomeLivro());
+		 * CincoMenosFrequentes(l, 5); System.out.println(); }
+		 *
+		 * for(Livro l : biblioteca) {
+		 * System.out.println("Nome do livro: "+l.getNomeLivro());
+		 * CincoMaisFrequentes(l, 5); System.out.println(); }
 		 * 
+		 * acimaDeMil(biblioteca);
 		 */
+		
+		for(Livro l : biblioteca) { System.out.println(l);
+		 System.out.println("-----------------------------------------------------");
+		 }	
 
-		for(Livro l : biblioteca) {
-			System.out.println("Nome do livro: "+l.getNomeLivro());
-			MaisFrequentes(l, 5);
-			System.out.println();
-		}
+		
 
 		sc.close();
 	}
@@ -288,7 +290,7 @@ public class Application {
 
 	}
 
-	public static void MenosFrequentes(Livro l, Integer num) {
+	public static void CincoMenosFrequentes(Livro l, Integer num) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 
 		for (String palavra : l.getConteudo()) {
@@ -318,21 +320,21 @@ public class Application {
 				contadorInvertido.get(entry.getValue()).add(entry.getKey());
 			}
 		}
-		
+
 		int count = 0;
 		int max = num;
-		
-		
-		for (Map.Entry<Integer, Set<String>> entry:contadorInvertido.entrySet()) {
-		     if (count >= max) break;
 
-		     System.out.println(entry.getValue().stream().findFirst().get());
-		 
-		     count++;
-		  }
+		for (Map.Entry<Integer, Set<String>> entry : contadorInvertido.entrySet()) {
+			if (count >= max)
+				break;
+
+			System.out.println(entry.getValue().stream().findFirst().get());
+
+			count++;
+		}
 	}
-	
-	public static void MaisFrequentes(Livro l, Integer num) {
+
+	public static void CincoMaisFrequentes(Livro l, Integer num) {
 		Map<String, Integer> distintos = new HashMap<String, Integer>();
 
 		for (String palavra : l.getConteudo()) {
@@ -362,17 +364,64 @@ public class Application {
 				contadorInvertido.get(entry.getValue()).add(entry.getKey());
 			}
 		}
-		
+
 		int count = 0;
 		int max = num;
-		
-		
-		for (Map.Entry<Integer, Set<String>> entry:contadorInvertido.descendingMap().entrySet()) {
-		     if (count >= max) break;
 
-		     System.out.println(entry.toString());
-		 
-		     count++;
-		  }
+		for (Map.Entry<Integer, Set<String>> entry : contadorInvertido.descendingMap().entrySet()) {
+			if (count >= max)
+				break;
+
+			System.out.println(entry.toString());
+
+			count++;
+		}
+	}
+
+	public static void acimaDeMil(List<Livro> biblioteca) {
+		Map<String, Integer> distintos = new HashMap<String, Integer>();
+		for (Livro l : biblioteca) {
+			for (String palavra : l.getConteudo()) {
+				Integer count = distintos.get(palavra);
+
+				if (count == null) {
+					distintos.put(palavra, 1);
+				} else {
+					distintos.put(palavra, count + 1);
+				}
+			}
+
+			NavigableMap<Integer, Set<String>> contadorInvertido = new TreeMap<Integer, Set<String>>();
+
+			Set<String> distintosII;
+
+			for (Entry<String, Integer> entry : distintos.entrySet()) {
+				if (!contadorInvertido.containsKey(entry.getValue())) {
+					contadorInvertido.put(entry.getValue(), null);
+				}
+
+				if (contadorInvertido.get(entry.getValue()) == null) {
+					distintosII = new HashSet<String>();
+					distintosII.add(entry.getKey());
+					contadorInvertido.put(entry.getValue(), distintosII);
+				} else {
+					contadorInvertido.get(entry.getValue()).add(entry.getKey());
+				}
+			}
+
+			int count = 0;
+			int max = contadorInvertido.size();
+
+			for (Map.Entry<Integer, Set<String>> entry : contadorInvertido.descendingMap().entrySet()) {
+				if (count >= max)
+					break;
+
+				if (entry.getKey() > 1000) {
+					System.out.println(entry.toString());
+				}
+
+				count++;
+			}
+		}
 	}
 }
