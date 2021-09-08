@@ -2,7 +2,7 @@
 Project created to use common data structures to create a little system to read books datas
 
 ### **What structures where used?**
-The main goal of this project, whas to create a system to read data from a file, with the best perfomance possible. There is a lot of ways of doing that, here, were used these guys:
+The main goal of this project, was to create a system to read data from a file, with the best perfomance possible. There is a lot of ways of doing that, here, were used these guys:
 
 - List
 - ArrayList
