@@ -20,6 +20,11 @@ Well, it's pretty easy actually. You just need books, and a IDE that runs Java.
 
 First of all, you need some books, in .txt format, to run the code. It's higly recommended to use books without any kind of accentuation or special characters, because the code doesn't clean the files ~~yet~~. After you got the books, and have put them in a folder, you have to link them on the code, in line 34:
 
-'''
-teste
-'''
+``` 
+File directoryPath = new File("C:\\Users\\Pichau\\Documents\\UTF\\Estrutura de dados\\Trabalho FinalED\\livros");
+```
+Replace the path with your folder, and it is all set. Here are some books that you can use, all of them were downloaded at [Gutenberg Project](https://www.gutenberg.org).
+
+[livros.zip](https://github.com/Theusaopia/DataStructure-CollegeProject/files/7131139/livros.zip)
+
+- APP
