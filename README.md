@@ -33,7 +33,7 @@ Now that you linked your books, and opened the code on your favorite IDE, just r
 
 ### **It doesn't work, now what?**
 
-Yep, i know, it's a little confusing to know what the app is doing. First of all, it wasn't created a proper front-end page, or a menu to separate each method. All of the methods that you can test, are in this range of lines: 71 - 115. If you want to test some method, just find the the "tester" and uncomment it. I know, it's hard, but it's all we got.
+Yep, i know, it's a little confusing to know what the app is doing. First of all, it wasn't created a proper front-end page, or a menu to separate each method. All of the methods that you can test, are in this range of lines: 71 - 115. If you want to test some method, just find the "tester" and uncomment it. I know, it's hard, but it's all we got.
 
 ### **Final considerations**
 
