@@ -28,3 +28,17 @@ Replace the path with your folder, and it is all set. Here are some books that y
 [livros.zip](https://github.com/Theusaopia/DataStructure-CollegeProject/files/7131139/livros.zip)
 
 - APP
+
+Now that you linked your books, and opened the code on your favorite IDE, just run the Application.java and it's all good :D
+
+### **It doesn't work, now what?**
+
+Yep, i know, it's a little confusing to know what the app is doing. First of all, it wasn't created a proper front-end page, or a menu to separate each method. All of the methods that you can test, are in this range of lines: 71 - 115. If you want to test some method, just find the the "tester" and uncomment it. I know, it's hard, but it's all we got.
+
+### **Final considerations**
+
+I'm going to be honest, the project it's very complicaded to understand. When I coded this little monster, we were kind of short timed in college, and I didn't have the time to think in a beatiful front-end, or menu, i needed to make it work. 
+
+It works? Yes, but isn't 100%, and the results of the methods could be incorrect. But, besides all that, i learned a lot doing this little monster, not only the data structures that I used, but also a little more about Java. 
+
+I'll try to work on this project sometime, improve it, and redesign this monster, so he still can be scary, but a little more prettier. 
