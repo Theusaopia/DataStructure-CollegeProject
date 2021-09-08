@@ -9,3 +9,5 @@ The main goal of this project, whas to create a system to read data from a file,
 - HashSet
 - HashMap
 - TreeMap
+
+It wasn't measured the efficiency of the methods (~~actually, I think it was, i just lost the data~~)
